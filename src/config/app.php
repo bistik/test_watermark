@@ -230,4 +230,6 @@ return [
 
     ],
 
+    'image_default_type' => 'png',
+
 ];
