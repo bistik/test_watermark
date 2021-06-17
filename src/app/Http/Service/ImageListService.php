@@ -7,17 +7,28 @@ use Carbon\Carbon;
 
 class ImageListService implements ImageListInterface
 {
+    public function makeImageArray(array $filenames): array
+    {
+        $imageRows = [];
 
-    public function makeImageArray(array $filenames, int $documentId): array
+        foreach ($filenames as $index => $filename) {
+            $imageRows[] = [
+                'page' => $index + 1,
+                'filepath' => $filename,
+                'created_at' => Carbon::now(),
+            ];
+        }
+
+        return $imageRows;
+    }
+
+    public function addDocumentId(array $filenames, int $documentId): array
     {
         $imageRows = [];
 
         foreach ($filenames as $filename) {
-            $imageRows[] = [
-                'document_id' => $documentId,
-                'filepath' => $filename,
-                'created_at' => Carbon::now(),
-            ];
+            $filename['document_id'] = $documentId;
+            $imageRows[] = $filename;
         }
 
         return $imageRows;

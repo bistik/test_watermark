@@ -23,26 +23,25 @@ class SaveDocumentController
 
         $pdfPath = $request->file('document')->store('documents');
 
+        if (!Storage::exists('images')) {
+            Storage::makeDirectory('images');
+        }
+
+        $images = $imageList->makeImageArray(
+            $pdfConverter->convert(
+                storage_path('app/documents/' . basename($pdfPath)),
+                public_path('images/' . pathinfo($pdfPath, PATHINFO_FILENAME)),
+                config('app.image_default_type')
+            )
+        );
+
         $document = Document::create([
             'filepath' => $pdfPath,
             'original_filename' => $request->file('document')->getClientOriginalName(),
             'filetype' => $request->file('document')->extension(),
         ]);
-
-        if (!Storage::exists('images')) {
-            Storage::makeDirectory('images');
-        }
-
-        Image::insert(
-            $imageList->makeImageArray(
-                $pdfConverter->convert(
-                    storage_path('app/documents/' . basename($pdfPath)),
-                    storage_path('app/images/' . pathinfo($pdfPath, PATHINFO_FILENAME)),
-                    config('app.image_default_type')
-                ),
-                $document->id
-            )
-        );
+        $images = $imageList->addDocumentId($images, $document->id);
+        Image::insert($images);
 
         return redirect()->route('index');
     }

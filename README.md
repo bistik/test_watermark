@@ -13,6 +13,7 @@ Run:
 - In `.env` file check DB_HOST, DB_DATABASE, DB_USERNAME, DB_PASSWORD. If necessary, edit to match the docker-compose file mysql credentials
 - Optional if you get a missing key error, run `docker-compose run --rm artisan key:generate`
 - `docker-compose run --rm artisan migrate`
+- `docker-compose run --rm artisan storage:link`
 
 
 If everything goes smoothly, you should now be able access the laravel app locally in localhost:8080

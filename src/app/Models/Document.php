@@ -9,4 +9,9 @@ class Document extends Model
 {
     protected $table = 'documents';
     protected $fillable = ['filepath', 'original_filename', 'filetype'];
+
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
 }

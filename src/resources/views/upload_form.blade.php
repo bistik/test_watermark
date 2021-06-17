@@ -27,7 +27,7 @@
         <tbody>
             @foreach ($documents as $document)
                 <tr>
-                    <td><a href="#">{{ $document->original_filename }}</a></td>
+                    <td><a href="{{ route('show-document', ['document' => $document->id]) }}">{{ $document->original_filename }}</a></td>
                     <td>{{ $document->created_at->format('Y-m-d') }}</td>
                     <td>{{ $document->filetype }}</td>
                 </tr>

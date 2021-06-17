@@ -1,19 +1,14 @@
 <?php
 
 use App\Http\Controllers\SaveDocumentController;
+use App\Http\Controllers\SaveWatermarkController;
+use App\Http\Controllers\ShowDocumentController;
 use App\Http\Controllers\UploadFormController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', UploadFormController::class)->name('index');
 Route::post('/save-document', SaveDocumentController::class)->name('save-document');
+Route::get('/show-document/{document}', ShowDocumentController::class)
+    ->name('show-document');
+Route::post('/save-watermark', SaveWatermarkController::class)
+    ->name('save-watermark');

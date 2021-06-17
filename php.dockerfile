@@ -17,9 +17,14 @@ RUN apk update && \
     imagemagick-libs \
     imagemagick-dev \
     php7-imagick \
-    ghostscript
+    php7-gd \
+    ghostscript \
+    libgd \
+    libpng-dev \
+    libjpeg-turbo-dev \
+    freetype-dev
 
-RUN docker-php-ext-install pdo pdo_mysql
+RUN docker-php-ext-install pdo pdo_mysql gd
 
 RUN pecl install imagick \
     && docker-php-ext-enable --ini-name 20-imagick.ini imagick

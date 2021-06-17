@@ -16,7 +16,9 @@ class CreateImagesTable extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->foreignId('document_id')->constrained('documents');
+            $table->integer('page');
             $table->string('filepath', 2000);
+            $table->string('watermark_filepath', 2000)->nullable();
             $table->timestamps();
         });
     }

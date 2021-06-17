@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Service\AddWatermarkInterface;
+use App\Http\Service\AddWatermarkService;
 use App\Http\Service\ConverterInterface;
 use App\Http\Service\ImageListInterface;
 use App\Http\Service\ImageListService;
@@ -19,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(ConverterInterface::class, PdfToImageConverter::class);
         $this->app->singleton(ImageListInterface::class, ImageListService::class);
+        $this->app->singleton(AddWatermarkInterface::class, AddWatermarkService::class);
     }
 
     /**
