@@ -14,6 +14,8 @@ Run:
 - Optional if you get a missing key error, run `docker-compose run --rm artisan key:generate`
 - `docker-compose run --rm artisan migrate`
 - `docker-compose run --rm artisan storage:link`
+- `docker-compose run --rm npm install`
+- `docker-compose run --rm npm run dev`
 
 
 If everything goes smoothly, you should now be able access the laravel app locally in localhost:8080

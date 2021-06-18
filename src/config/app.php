@@ -231,5 +231,9 @@ return [
     ],
 
     'image_default_type' => 'png',
+    'image_width' => 1224,
+    'watermark_width' => 300,
+    'watermark_height' => 300,
+    'watermark_color' => 'rgba(255, 0, 0, 0.5)',
 
 ];
